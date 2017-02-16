@@ -25,7 +25,6 @@ export default function speetTestPerTime( SPEEDTEST_INTERVAL, SPEEDTEST_TIME, ) 
       const starTime = moment( `${nextHour}:00:00`, 'HH:mm:ss' );
       currentTime = moment( currentTime ).add( SLEEP_TIMER, 'seconds' );
       const next = moment( starTime ).diff( currentTime, 'secents' );
-      console.log( currentTime );
       if ( next <= ( SLEEP_TIMER * 1000 ) && next >= ( ( SLEEP_TIMER ) * -1 ) * 1000 ) {
         speedInDB( SPEEDTEST_INTERVAL, SPEEDTEST_TIME )
           .then( ( averageSpeet ) => {
