@@ -1,5 +1,11 @@
+import low from 'lowdb';
 import server from './bin/www';
-import speedTimer from './speedTestTimer';
+import speedTimer from './speed/speedTestTimer';
+
+const db = low( './speedDB.json' );
+
+db.defaults( { speed: [], reconnect: [] } )
+  .write();
 
 const app = server();
 
