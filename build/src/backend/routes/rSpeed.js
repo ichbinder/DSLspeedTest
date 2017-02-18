@@ -28,14 +28,12 @@ router.post('/lastHours', function (req, res) {
       error: true
     });
   } else {
-    (function () {
-      var currentTime = (0, _dateformat2.default)(new Date(), 'yyyy-mm-dd HH:MM:ss');
-      res.status(200).json(db.get('speed').filter(function (i) {
-        var pastTime = (0, _moment2.default)(currentTime).subtract(req.body.hours, 'hours');
-        if ((0, _moment2.default)(i.date).isBetween(pastTime, currentTime)) return i;
-        return null;
-      }).value());
-    })();
+    var currentTime = (0, _dateformat2.default)(new Date(), 'yyyy-mm-dd HH:MM:ss');
+    res.status(200).json(db.get('speed').filter(function (i) {
+      var pastTime = (0, _moment2.default)(currentTime).subtract(req.body.hours, 'hours');
+      if ((0, _moment2.default)(i.date).isBetween(pastTime, currentTime)) return i;
+      return null;
+    }).value());
   }
 }).post('/getWeek', function (req, res) {
   if (!req.body.week) {
